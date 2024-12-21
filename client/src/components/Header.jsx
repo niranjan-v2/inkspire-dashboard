@@ -11,6 +11,8 @@ export default function Header() {
       <Link to ="/" className='self-center whitespace-nowrap text-sm sm:text-xl 
       font-semibold dark:text-white'>
         <span className='px-2 py-1 bg-gradient-to-r from-indigo-500'>Inkspire</span>
+        <br></br>
+        <span className='px-10 text-sm font-normal'>By Niranjan Vasudevan</span>
       </Link>
       <form>
         <TextInput
@@ -25,11 +27,11 @@ export default function Header() {
         <AiOutlineSearch></AiOutlineSearch>
       </Button>
       <div className="flex gap-6 md:order-2">
-        <Button className='w-14 h-9 hidden sm:inline' color='gray' pill>
+        <Button className='w-14 h-9 mt-1 hidden sm:inline' color='gray' pill>
           <FaMoon></FaMoon>
         </Button>
         <Link to ='/signin'>
-          <Button color='blue'>
+          <Button color='blue' >
             Sign In
           </Button>
         </Link>
