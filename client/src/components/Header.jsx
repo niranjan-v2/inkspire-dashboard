@@ -16,7 +16,7 @@ export default function Header() {
       </Link>
       <form>
         <TextInput
-          type='text'
+          type='text' 
           placeholder='Search...'
           style={{borderRadius:'0'}}
           rightIcon={AiOutlineSearch}
