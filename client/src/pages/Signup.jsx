@@ -33,7 +33,6 @@ export default function Signup() {
       setLoading(false);
       if(res.ok) {
         navigate('/signin');
-        console.log('ok');
       }
 
     } catch(error) {
@@ -72,7 +71,7 @@ export default function Signup() {
             </div>
             <Button gradientDuoTone="purpleToBlue" type="submit" disabled={loading}>
               {
-                loading ? (<><Spinner size='sm' /> <span className="pl-3"> Loading...</span></> ): 'Sign up'
+                loading ? (<><Spinner size='sm' /> <span className="pl-3"> Signing up...</span></> ): 'Sign up'
               }
             </Button>
           </form>
