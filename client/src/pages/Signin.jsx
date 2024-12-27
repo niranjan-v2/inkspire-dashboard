@@ -10,7 +10,6 @@ export default function Signin() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    console.log(formData);
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
   const handleSubmit = async (e) => {
@@ -28,6 +27,7 @@ export default function Signin() {
       });
       const data = await res.json();
       if (data.success === false) {
+        setLoading(false);
         return setErrorMessage(data.message);
       }
       setLoading(false);
@@ -82,7 +82,7 @@ export default function Signin() {
               {loading ? (
                 <>
                   <Spinner size="sm" />{" "}
-                  <span className="pl-3"> Signing up...</span>
+                  <span className="pl-3"> Signing in...</span>
                 </>
               ) : (
                 "Sign In"
