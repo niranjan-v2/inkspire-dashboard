@@ -40,7 +40,7 @@ export default function Signup() {
   };
   return (
     <div className="mt-20 min-h-screen">
-      <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
+      <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-20">
         {/*left*/}
         <div className="flex-1">
           <Link to="/" className="font-bold dark:text-white text-4xl">
@@ -57,7 +57,6 @@ export default function Signup() {
           </p>
         </div>
         {/*right*/}
-
         <div className="flex-1">
           <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
             <div>
