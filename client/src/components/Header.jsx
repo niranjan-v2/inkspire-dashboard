@@ -1,13 +1,23 @@
-import { Navbar, TextInput, Button, Dropdown, Avatar, DropdownHeader } from "flowbite-react";
+import {
+  Navbar,
+  TextInput,
+  Button,
+  Dropdown,
+  Avatar,
+  DropdownHeader,
+} from "flowbite-react";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
-import { FaMoon } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleTheme } from "../redux/theme/themeSlice";
 
 export default function Header() {
   const path = useLocation().pathname;
+  const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+  const {theme} = useSelector((state) => state.theme);
   return (
     <Navbar className="border-b-2">
       <Link
@@ -34,8 +44,13 @@ export default function Header() {
         <AiOutlineSearch></AiOutlineSearch>
       </Button>
       <div className="flex gap-6 md:order-2">
-        <Button className="w-14 h-9 mt-1 hidden sm:inline" color="gray" pill>
-          <FaMoon></FaMoon>
+        <Button
+          className="w-14 h-9 mt-1 hidden sm:inline"
+          color="gray"
+          pill
+          onClick={() => dispatch(toggleTheme())}
+        >
+          {theme === 'light' ? <FaMoon/> : <FaSun/>}
         </Button>
 
         {currentUser ? (
@@ -47,12 +62,14 @@ export default function Header() {
             }
           >
             <DropdownHeader>
-              <span className='block text-sm font-semibold'>@{currentUser.username}</span>
+              <span className="block text-sm font-semibold">
+                @{currentUser.username}
+              </span>
             </DropdownHeader>
-            <Link to = {'/dashboard?tab=profile'}>
-            <Dropdown.Item>Profile</Dropdown.Item>
+            <Link to={"/dashboard?tab=profile"}>
+              <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
-            <Dropdown.Divider/>
+            <Dropdown.Divider />
             <Dropdown.Item>Sign out</Dropdown.Item>
           </Dropdown>
         ) : (

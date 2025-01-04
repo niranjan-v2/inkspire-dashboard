@@ -7,7 +7,7 @@ import {
   signInStart,
   signInSuccess,
   signInFailure,
-} from "../redux/user/userSlice";
+} from "../redux/user/userSlice"; 
 import OAuth from "../components/OAuth";
 
 export default function Signin() {
@@ -51,7 +51,6 @@ export default function Signin() {
         {/*left*/}
         <div className="flex-1">
           <Link to="/" className="font-bold dark:text-white text-4xl">
-             
             <span className="px-2 py-1 bg-gradient-to-r from-indigo-500">
               Inkspire
             </span>
