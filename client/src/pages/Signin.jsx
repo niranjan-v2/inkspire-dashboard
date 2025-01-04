@@ -2,12 +2,17 @@ import { Button, TextInput, Alert, Spinner } from "flowbite-react";
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {useDispatch, useSelector} from 'react-redux';
-import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from "../redux/user/userSlice";
+import OAuth from "../components/OAuth";
 
 export default function Signin() {
   const [formData, setFormData] = useState({});
-  const {loading, error: errorMessage} = useSelector(state => state.user);
+  const { loading, error: errorMessage } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -75,21 +80,24 @@ export default function Signin() {
                 onChange={handleChange}
               />
             </div>
-            <Button
-              gradientDuoTone="purpleToBlue"
-              type="submit"
-              disabled={loading}
-              pill
-            >
-              {loading ? (
-                <>
-                  <Spinner size="sm" />{" "}
-                  <span className="pl-3"> Signing in...</span>
-                </>
-              ) : (
-                "Sign In"
-              )}
-            </Button>
+            <div className="flex flex-col gap-4">
+              <Button
+                gradientDuoTone="purpleToBlue"
+                type="submit"
+                disabled={loading}
+                pill
+              >
+                {loading ? (
+                  <>
+                    <Spinner size="sm" />{" "}
+                    <span className="pl-3"> Signing in...</span>
+                  </>
+                ) : (
+                  "Sign In"
+                )}
+              </Button>
+              <OAuth />
+            </div>
           </form>
           <div className="flex gap-2 mt-5">
             <span>Don't have an account?</span>
