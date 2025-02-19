@@ -88,7 +88,7 @@ export default function Signup() {
             </div>
             <div className="flex flex-col gap-4">
               <Button
-                gradientDuoTone="purpleToBlue"
+                color="blue"
                 type="submit"
                 disabled={loading}
               >
