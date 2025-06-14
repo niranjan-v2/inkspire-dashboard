@@ -1,4 +1,4 @@
-import { TextInput, Button, Alert } from "flowbite-react";
+import { TextInput, Button, Alert, Modal } from "flowbite-react";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -10,18 +10,28 @@ import {
 import { app } from "../firebase.js";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { updateStart, updateSuccess, updateFailure } from "../redux/user/userSlice.js";
+import {
+  updateStart,
+  updateSuccess,
+  updateFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  deleteUserFailure,
+} from "../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 export default function DashProfile() {
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, error } = useSelector((state) => state.user);
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [imageFileUploading, setImageFileUploading] = useState(false);
-  const [updateUserSuccess, setUpdateUserSuccess] = useState(null)
-  const [formData, setFormData] = useState({})
+  const [updateUserSuccess, setUpdateUserSuccess] = useState(null);
+  const [updateUserError, setUpdateUserError] = useState(null);
+  const [formData, setFormData] = useState({});
   const filePickerRef = useRef();
   const dispatch = useDispatch();
   const handleImageChange = (e) => {
@@ -61,46 +71,65 @@ export default function DashProfile() {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageFile(downloadURL);
-          setFormData({...formData, profilePicture:downloadURL});
+          setFormData({ ...formData, profilePicture: downloadURL });
           setImageFileUploading(false);
         });
       }
     );
   };
   const handleChange = (e) => {
-    setFormData({...formData, [e.target.id]:e.target.value})
+    setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = async(e) => {
+  const handleDeleteUser = async (e) => {
+    setShowModal(false);
+    try {
+      dispatch(deleteUserStart());
+      console.log(currentUser._id)
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if(!res.ok) {
+        dispatch(deleteUserFailure(data.message));
+      }
+      else {
+        dispatch(deleteUserSuccess(data));
+      }
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(Object.keys(formData).length === 0) {
+    if (Object.keys(formData).length === 0) {
+      setUpdateUserError("Error, no changes made");
       return;
     }
-    if(imageFileUploading) {
+    if (imageFileUploading) {
       return;
     }
     try {
       dispatch(updateStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-        });
-        const data = await res.json();
-        if(!res.ok) {
-          dispatch(updateFailure(data.message));
-        }
-        else {
-          dispatch(updateSuccess(data))
-          setUpdateUserSuccess("Your profile has been updated")
-        }
-
-    } catch(error) {
+      });
+      const data = await res.json();
+      if (!res.ok) {
         dispatch(updateFailure(data.message));
+      } else {
+        dispatch(updateSuccess(data));
+        setUpdateUserSuccess("Your profile has been updated");
+      }
+    } catch (error) {
+      dispatch(updateFailure(data.message));
     }
-  }
+  };
 
   return (
     <div className="max-w-lg mx-auto p-3 w-full">
@@ -142,7 +171,11 @@ export default function DashProfile() {
             src={imageFileUrl || currentUser.profilePicture}
             alt="user"
             className={`rounded-full w-full h-full object-cover border-8 border-[lightgray] 
-              ${imageFileUploadProgress && imageFileUploadProgress < 100 && 'opacity-60'}`}
+              ${
+                imageFileUploadProgress &&
+                imageFileUploadProgress < 100 &&
+                "opacity-60"
+              }`}
           />
         </div>
         {imageFileUploadError && (
@@ -174,7 +207,12 @@ export default function DashProfile() {
         </Button>
       </form>
       <div className="text-red-500 flex justify-between mt-5">
-        <span className="cursor-pointer font-medium">Delete Account</span>
+        <span
+          onClick={() => setShowModal(true)}
+          className="cursor-pointer font-medium"
+        >
+          Delete Account
+        </span>
         <span className="cursor-pointer font-medium">Sign Out</span>
       </div>
       {updateUserSuccess && (
@@ -182,6 +220,38 @@ export default function DashProfile() {
           {updateUserSuccess}
         </Alert>
       )}
+      
+      {updateUserError && (
+        <Alert color='failure' className="mt-5">
+          {updateUserError}
+        </Alert>
+      )}
+
+      {error && (
+        <Alert color='failure' className="mt-5">
+          {error}
+        </Alert>
+      )}
+
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
+            <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
+              Are you sure you want to delete your account
+            </h3>
+            <div className="flex justify-center gap-4">
+              <Button color="failure" onClick={handleDeleteUser}>
+                Yes
+              </Button>
+              <Button color="gray" onClick={() => setShowModal(false)}>
+                No
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
