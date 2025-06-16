@@ -21,9 +21,10 @@ import {
 } from "../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 export default function DashProfile() {
-  const { currentUser, error } = useSelector((state) => state.user);
+  const { currentUser, error, loading } = useSelector((state) => state.user);
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
@@ -86,15 +87,14 @@ export default function DashProfile() {
     setShowModal(false);
     try {
       dispatch(deleteUserStart());
-      console.log(currentUser._id)
+      console.log(currentUser._id);
       const res = await fetch(`/api/user/delete/${currentUser._id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
       const data = await res.json();
-      if(!res.ok) {
+      if (!res.ok) {
         dispatch(deleteUserFailure(data.message));
-      }
-      else {
+      } else {
         dispatch(deleteUserSuccess(data));
       }
     } catch (error) {
@@ -132,22 +132,21 @@ export default function DashProfile() {
     }
   };
 
-  const handleSignout = async() => {
+  const handleSignout = async () => {
     try {
-      const res = await fetch('/api/user/signout', {
-        method: "POST"
+      const res = await fetch("/api/user/signout", {
+        method: "POST",
       });
       const data = await res.json();
-      if(!res.ok) {
+      if (!res.ok) {
         console.log(data.message);
-      }
-      else {
+      } else {
         dispatch(signoutSuccess());
       }
-    } catch(error) {
+    } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   return (
     <div className="max-w-lg mx-auto p-3 w-full">
@@ -220,9 +219,20 @@ export default function DashProfile() {
           defaultValue="************"
           onChange={handleChange}
         />
-        <Button type="submit" color="blue" disabled={imageFileUploading}>
+        <Button
+          type="submit"
+          color="blue"
+          disabled={loading || imageFileUploading}
+        >
           Update
         </Button>
+        {currentUser.isAdmin && (
+          <Link to={'/create-post'}>
+            <Button className="w-full" color="indigo" type="button">
+              Create a post
+            </Button>
+          </Link>
+        )}
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span
@@ -231,22 +241,24 @@ export default function DashProfile() {
         >
           Delete Account
         </span>
-        <span onClick={handleSignout} className="cursor-pointer font-medium">Sign Out</span>
+        <span onClick={handleSignout} className="cursor-pointer font-medium">
+          Sign Out
+        </span>
       </div>
       {updateUserSuccess && (
         <Alert color="success" className="mt-5">
           {updateUserSuccess}
         </Alert>
       )}
-      
+
       {updateUserError && (
-        <Alert color='failure' className="mt-5">
+        <Alert color="failure" className="mt-5">
           {updateUserError}
         </Alert>
       )}
 
       {error && (
-        <Alert color='failure' className="mt-5">
+        <Alert color="failure" className="mt-5">
           {error}
         </Alert>
       )}

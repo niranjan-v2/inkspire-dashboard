@@ -105,8 +105,8 @@ export default function Signin() {
             </Link>
           </div>
           {errorMessage && (
-            <Alert className="mt-5" color="failure">
-              {errorMessage}
+            <Alert className="mt-5 flex justify-center items-center text-center" color="failure">
+              Network Error
             </Alert>
           )}
         </div>
