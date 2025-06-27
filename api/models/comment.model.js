@@ -1,5 +1,4 @@
 import mongoose, { Mongoose } from "mongoose";
-import { required } from "nodemon/lib/config";
 
 const commentSchema = new mongoose.Schema({
   postId: {
