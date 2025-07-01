@@ -7,7 +7,7 @@ import { useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
   const [file, setFile] = useState(null);
@@ -51,29 +51,29 @@ export default function CreatePost() {
       setImageUploadProgress(null);
     }
   };
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/post/create', {
+      const res = await fetch("/api/post/create", {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if(!res.ok) {
+      if (!res.ok) {
         setPublishError(data.message);
         return;
       }
-      if(res.ok) {
+      if (res.ok) {
         setPublishError(null);
         navigate(`/posts/${data.slug}`);
       }
-    } catch(error) {
-      setPublishError('Something went wrong');
+    } catch (error) {
+      setPublishError("Something went wrong");
     }
-  }
+  };
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
@@ -86,12 +86,14 @@ export default function CreatePost() {
             id="title"
             className="flex-1"
             onChange={(e) => {
-              setFormData({ ...formData, title:e.target.value})
+              setFormData({ ...formData, title: e.target.value });
             }}
           />
-          <Select onChange={(e) => {
-            setFormData({ ...formData, category:e.target.value})
-          }}>
+          <Select
+            onChange={(e) => {
+              setFormData({ ...formData, category: e.target.value });
+            }}
+          >
             <option value="uncategorized">Select a category</option>
             <option value="ai">AI</option>
             <option value="cpp">C++</option>
@@ -125,23 +127,33 @@ export default function CreatePost() {
             )}
           </Button>
         </div>
-        {imageUploadError && 
-          <Alert color='failure'>
-            {imageUploadError}
-          </Alert>
-        }
-        {formData.image &&(
-          <img src={formData.image} alt='upload' className='w-full h-72 object-cover' />
+        {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
+        {formData.image && (
+          <img
+            src={formData.image}
+            alt="upload"
+            className="w-full h-72 object-cover"
+          />
         )}
-        <ReactQuill className="h-72 mb-12" theme="snow" required onChange={(value) => {
-          setFormData({...formData, content: value})
-        }} />
+        <ReactQuill
+          className="h-72 mb-12"
+          theme="snow"
+          required
+          onChange={(value) => {
+            setFormData({ ...formData, content: value });
+          }}
+        />
         <Button type="submit" gradientDuoTone="purpleToBlue">
           Publish
         </Button>
-        {
-          publishError && <Alert className="mt-5 items-center" color="failure" > {publishError.includes('duplicate') ? "Try changing the title" : publishError} </Alert>
-        }
+        {publishError && (
+          <Alert className="mt-5 items-center" color="failure">
+            {" "}
+            {publishError.includes("duplicate")
+              ? "Try changing the title"
+              : publishError}{" "}
+          </Alert>
+        )}
       </form>
     </div>
   );
