@@ -34,12 +34,14 @@ export const likeComment = async(req, res, next) => {
         if(!comment) {
             return next(errorHandler(404, 'Comment not found'));
         }
-        const userIndex = comment.likes.indexOf(req.userId);
+        const userIndex = comment.likes.indexOf(req.user.id);
         if(userIndex === -1) {
+            console.log('here1 - new like');
             comment.numberOfLikes += 1;
             comment.likes.push(req.user.id);
         }
         else {
+            console.log('here2 - unliked');
             comment.numberOfLikes -= 1;
             comment.likes.splice(userIndex, 1);
         }
