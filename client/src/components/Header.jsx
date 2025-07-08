@@ -55,7 +55,7 @@ export default function Header() {
           placeholder="Search..."
           style={{ borderRadius: "0" }}
           rightIcon={AiOutlineSearch}
-          className="hidden lg:inline"
+          className="hidden lg:inline focus:!border-blue-800"
         />
       </form>
       <Button className="w-12 h-9 lg:hidden" color="gray" pill>
