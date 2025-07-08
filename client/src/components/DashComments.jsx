@@ -43,7 +43,7 @@ export default function DashComments() {
       );
       const data = await res.json();
       if (res.ok) {
-        setUsers((prev) => [...prev, ...data.comments]);
+        setComments((prev) => [...prev, ...data.comments]);
         if (data.comments.length < 9) {
           setShowMore(false);
         }
@@ -54,14 +54,15 @@ export default function DashComments() {
   };
 
   const handleDeleteComment = async () => {
+    setShowModal(false);
     try {
       const res = await fetch(`/api/comment/delete/${commentIdToDelete}`, {
         method: "DELETE",
       });
       const data = await res.json();
       if (res.ok) {
-        setUsers((prev) =>
-          prev.filter((comment) => user._id !== commentIdToDelete)
+        setComments((prev) =>
+          prev.filter((comment) => comment._id !== commentIdToDelete)
         );
         setShowModal(false);
       } else {
@@ -74,7 +75,7 @@ export default function DashComments() {
 
   return (
     <div className="w-full table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
-      {comments.isAdmin && comments.length > 0 ? (
+      {currentUser.isAdmin && comments.length > 0 ? (
         <>
           <Table hoverable className="shadow-md">
             <Table.Head>
@@ -85,7 +86,7 @@ export default function DashComments() {
               <Table.HeadCell>User ID</Table.HeadCell>
               <Table.HeadCell>Delete</Table.HeadCell>
             </Table.Head>
-            {comments.map((user) => (
+            {comments.map((comment) => (
               <Table.Body className="divide-y" key={comment._id}>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                   <Table.Cell>

@@ -9,7 +9,7 @@ router.get('/getcomments/:postId', getPostComments);
 router.put('/like/:commentId', verifyToken, likeComment);
 router.put('/edit/:commentId', verifyToken, editComment);
 router.delete('/delete/:commentId', verifyToken, deleteComment);
-router.get('/getusercomments', getUserComments);
+router.get('/getusercomments', verifyToken, getUserComments);
 
 export default router;
 
