@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import PostCard from "../components/PostCard"
+import PostCard from "../components/PostCard";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
-  useEffect(()=> {
-    const fetchPosts = async() => {
+  useEffect(() => {
+    const fetchPosts = async () => {
       const res = await fetch(`/api/post/getposts`);
       const data = await res.json();
       setPosts(data.posts);
-    }
+    };
     fetchPosts();
-  }, [])
+  }, []);
   return (
     <div className="flex flex-col gap-28 px-6 py-10 lg:px-32 max-w-7xl mx-auto font-sans text-gray-800">
       {/* Hero Section */}
@@ -54,29 +55,34 @@ export default function Home() {
             </li>
           ))}
         </ul>
+        <Link to={'/search'}>
         <button className="self-start text-blue-600 text-sm font-medium mt-2 hover:underline transition">
           View All Posts →
         </button>
+        </Link>
       </section>
-      
+
       {/* Recent posts */}
       <section className="max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7">
-        {
-          posts && posts.length > 0 && (
-            <div className="flex flex-col gap-6">
-              <h2 className="text-3xl font-semibold text-gray-900">Recent Posts</h2>
-              <div className="flex gap-4 overflow-x-auto scrollbar-hide">
-  {
-    posts.map((post) => (
-      <div className="min-w-[300px] flex-shrink-0" key={post._id}>
-        <PostCard post={post} />
-      </div>
-    ))
-  }
-</div>
+        {posts && posts.length > 0 && (
+          <div className="flex flex-col gap-6">
+            <h2 className="text-3xl font-semibold text-gray-900">
+              Recent Posts
+            </h2>
+            <div className="flex gap-4 overflow-x-auto scrollbar-hide">
+              {posts.map((post) => (
+                <div className="min-w-[300px] flex-shrink-0" key={post._id}>
+                  <PostCard post={post} />
+                </div>
+              ))}
             </div>
-          )
-        }
+          </div>
+        )}
+        <Link to={'/search'}>
+        <button className="self-start text-blue-600 text-sm font-medium mt-2 hover:underline transition">
+          View All Posts →
+        </button>
+        </Link>
       </section>
 
       {/* Projects */}
