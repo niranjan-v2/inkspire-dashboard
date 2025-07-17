@@ -94,11 +94,11 @@ export default function Home() {
           {[
             {
               name: "DevNote",
-              desc: "A developer’s journaling tool built with Next.js and local storage.",
+              desc: "A lightweight text editor built with C++",
             },
             {
-              name: "StackTrack",
-              desc: "Visualize and track your evolving tech stack over time.",
+              name: "RunML",
+              desc: "Development of a C11 based source-source compiler.",
             },
           ].map((proj, i) => (
             <div
@@ -112,9 +112,11 @@ export default function Home() {
             </div>
           ))}
         </div>
+        <Link to={'/projects'}>
         <button className="self-start text-blue-600 text-sm font-medium mt-2 hover:underline transition">
           Explore My Work →
         </button>
+        </Link>
       </section>
 
       {/* Interests */}

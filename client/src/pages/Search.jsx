@@ -143,7 +143,7 @@ export default function Search() {
         <h1 className="text-3xl font-semibold sm:border-b border-gray-500 p-3 mt-5">
           Post Results
         </h1>
-        <div className="p-7 flex-wrap gap-4">
+        <div className="p-7 flex flex-wrap gap-4">
           {!loading && posts.length === 0 && (
             <p className="text-xl text-gray-500">No posts found.</p>
           )}
@@ -156,7 +156,7 @@ export default function Search() {
             ))
           }
           {
-            showMore && <button onClick={handleShowMore} className="text-blue-600 text-lg hover:underline p-7 w-full"></button>
+            showMore && <button onClick={handleShowMore} className="text-blue-600 text-lg hover:underline p-7 w-full">Show More</button>
           }
         </div>
       </div>

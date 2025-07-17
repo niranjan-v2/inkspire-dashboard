@@ -14,9 +14,14 @@ export default function About() {
   }
   return (
     <div className="flex flex-col items-center py-8">
-        <Document file="/Resume.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-          <Page scale={1.5} pageNumber={pageNumber} renderTextLayer={false} renderAnnotationLayer={false} />
-        </Document>
+      <Document file="/Resume.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+        <Page
+          scale={1.5}
+          pageNumber={pageNumber}
+          renderTextLayer={false}
+          renderAnnotationLayer={false}
+        />
+      </Document>
     </div>
   );
 }
