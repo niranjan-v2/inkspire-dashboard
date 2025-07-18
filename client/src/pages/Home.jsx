@@ -13,10 +13,12 @@ export default function Home() {
     fetchPosts();
   }, []);
   return (
-    <div className="flex flex-col gap-28 px-6 py-10 lg:px-32 max-w-7xl mx-auto font-sans text-gray-800">
+    <div className="flex flex-col gap-28 px-6 py-10 lg:px-32 max-w-7xl mx-auto font-sans text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900">
+      {/*<div className="absolute inset-0 bg-[url('/bg1.png')] bg-cover bg-center"></div>*/}
+
       {/* Hero Section */}
       <section className="flex flex-col gap-6">
-        <h1 className="font-serif text-4xl lg:text-7xl font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-200">
+        <h1 className="font-serif text-4xl lg:text-7xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white">
           Building the Future,
           <br /> One Line at a Time
         </h1>
@@ -30,7 +32,7 @@ export default function Home() {
 
       {/* Fresh posts */}
       <section className="flex flex-col gap-6">
-        <h2 className="text-3xl font-semibold text-gray-900">
+        <h2 className="text-3xl font-semibold text-gray-900 dark:text-white">
           Fresh from the Terminal
         </h2>
         <ul className="flex flex-col gap-5">
@@ -41,22 +43,22 @@ export default function Home() {
             },
             {
               title: "Why I Switched to Rust for Systems Work",
-              desc: "Exploring safety, performance, and why it’s worth learning.",
+              desc: "Exploring safety, performance, and why it's worth learning.",
             },
           ].map((post, i) => (
             <li
               key={i}
-              className="bg-white shadow-sm hover:shadow-md transition-shadow duration-200 border rounded-xl p-5"
+              className="bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-shadow duration-200 border dark:border-gray-700 rounded-xl p-5"
             >
-              <h3 className="font-semibold text-lg text-gray-800">
+              <h3 className="font-semibold text-lg text-gray-800 dark:text-white">
                 {post.title}
               </h3>
-              <p className="text-sm text-gray-600 mt-1">{post.desc}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{post.desc}</p>
             </li>
           ))}
         </ul>
         <Link to={'/search'}>
-        <button className="self-start text-blue-600 text-sm font-medium mt-2 hover:underline transition">
+        <button className="self-start text-blue-600 dark:text-blue-400 text-sm font-medium mt-2 hover:underline transition">
           View All Posts →
         </button>
         </Link>
@@ -66,7 +68,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7">
         {posts && posts.length > 0 && (
           <div className="flex flex-col gap-6">
-            <h2 className="text-3xl font-semibold text-gray-900">
+            <h2 className="text-3xl font-semibold text-gray-900 dark:text-white">
               Recent Posts
             </h2>
             <div className="flex gap-4 overflow-x-auto scrollbar-hide">
@@ -79,7 +81,7 @@ export default function Home() {
           </div>
         )}
         <Link to={'/search'}>
-        <button className="self-start text-blue-600 text-sm font-medium mt-2 hover:underline transition">
+        <button className="self-start text-blue-600 dark:text-blue-400 text-sm font-medium mt-2 hover:underline transition">
           View All Posts →
         </button>
         </Link>
@@ -87,7 +89,7 @@ export default function Home() {
 
       {/* Projects */}
       <section className="flex flex-col gap-6">
-        <h2 className="text-3xl font-semibold text-gray-900">
+        <h2 className="text-3xl font-semibold text-gray-900 dark:text-white">
           Featured Projects
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
@@ -103,17 +105,17 @@ export default function Home() {
           ].map((proj, i) => (
             <div
               key={i}
-              className="bg-white border rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
+              className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
             >
-              <h3 className="text-lg font-semibold text-gray-800">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
                 {proj.name}
               </h3>
-              <p className="text-sm text-gray-600 mt-1">{proj.desc}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{proj.desc}</p>
             </div>
           ))}
         </div>
         <Link to={'/projects'}>
-        <button className="self-start text-blue-600 text-sm font-medium mt-2 hover:underline transition">
+        <button className="self-start text-blue-600 dark:text-blue-400 text-sm font-medium mt-2 hover:underline transition">
           Explore My Work →
         </button>
         </Link>
@@ -121,8 +123,8 @@ export default function Home() {
 
       {/* Interests */}
       <section className="flex flex-col gap-6">
-        <h2 className="text-3xl font-semibold text-gray-900">What I’m Into</h2>
-        <p className="text-base text-gray-600 max-w-2xl leading-relaxed"></p>
+        <h2 className="text-3xl font-semibold text-gray-900 dark:text-white">What I'm Into</h2>
+        <p className="text-base text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed"></p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           {[
             "🛠️ Systems Programming",
@@ -132,7 +134,7 @@ export default function Home() {
           ].map((item, i) => (
             <div
               key={i}
-              className="bg-gray-50 hover:bg-gray-100 transition rounded-xl py-4 px-2 text-sm font-medium border"
+              className="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition rounded-xl py-4 px-2 text-sm font-medium border dark:border-gray-700"
             >
               {item}
             </div>
@@ -141,16 +143,16 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section className="text-center py-16 border-t">
-        <h2 className="text-2xl lg:text-3xl font-semibold text-gray-900">
-          Let’s Connect
+      <section className="text-center py-16 border-t dark:border-gray-800">
+        <h2 className="text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-white">
+          Let's Connect
         </h2>
-        <p className="text-gray-600 text-sm mt-2">
+        <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
           Working on something interesting or just want to chat? Drop a line.
         </p>
         <a
           href="mailto:niranjanv@duck.com"
-          className="text-blue-600 text-sm mt-2 inline-block hover:underline transition"
+          className="text-blue-600 dark:text-blue-400 text-sm mt-2 inline-block hover:underline transition"
         >
           📧 niranjanv@duck.com
         </a>
