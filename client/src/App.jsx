@@ -15,6 +15,7 @@ import UpdatePost from "./pages/UpdatePost.jsx";
 import PostPage from "./pages/PostPage.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Search from "./pages/Search.jsx";
+import RunmlPage from "./pages/RunmlPage.jsx";
 
 export default function App() {
   return (
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/post/:postSlug" element={<PostPage />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/runml" element={<RunmlPage />} />
       </Routes>
       <FooterCom />
     </BrowserRouter>
