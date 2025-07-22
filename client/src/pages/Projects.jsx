@@ -159,7 +159,7 @@ const App = () => {
         <div className="mb-4 flex justify-center items-center">
           <span className="text-blue-600 dark:text-[#00ff9d] mr-2">$</span>
           <span className="text-gray-800 dark:text-[#ccd6f6]">
-            cat about_me.txt
+            cat me.txt
           </span>
         </div>
         <p>Built with ❤️ • {new Date().getFullYear()}</p>

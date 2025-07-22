@@ -25,7 +25,7 @@ export default function Home() {
         <p className="text-gray-600 dark:text-gray-300 text-base lg:text-lg max-w-2xl leading-relaxed">
           Here you'll find a variety of articles and posts about everything I
           learn—technologies, software engineering, programming languages, and
-          more. This is my digital lab notebook where I reflect, refine, and
+          more. This is my digital workspace where I reflect, refine, and
           share.
         </p>
       </section>

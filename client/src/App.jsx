@@ -16,6 +16,7 @@ import PostPage from "./pages/PostPage.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Search from "./pages/Search.jsx";
 import RunmlPage from "./pages/RunmlPage.jsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 export default function App() {
   return (
@@ -38,6 +39,7 @@ export default function App() {
         <Route path="/post/:postSlug" element={<PostPage />} />
         <Route path="/search" element={<Search />} />
         <Route path="/runml" element={<RunmlPage />} />
+        <Route path="/legal/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
       <FooterCom />
     </BrowserRouter>
