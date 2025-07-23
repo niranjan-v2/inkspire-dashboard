@@ -109,6 +109,14 @@ export default function CreatePost() {
             <option value="cpp">C++</option>
             <option value="general">General</option>
             <option value="js">Javascript</option>
+            <option value="webdev">Web Development</option>
+            <option value="ds">Data Structures</option>
+            <option value="algorithms">Algorithms</option>
+            <option value="cyber-sec">Cyber Security</option>
+            <option value="cloud-computing">Cloud Computing</option>
+            <option value="swe">Software Engineering</option>
+            <option value="java">Java</option>
+            <option value="langages">Languages</option>
           </Select>
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-blue-800 border-dotted p-3">
