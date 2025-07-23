@@ -61,7 +61,8 @@ export default {
   plugins: [
     flowbite.plugin(),
     require('tailwind-scrollbar'),
-      require("tailwindcss-animate")
+    require("tailwindcss-animate"),
+	require('@tailwindcss/typography')
 ],
   
 }

@@ -1,13 +1,16 @@
 import { Button, FileInput, Select, TextInput, Alert } from "flowbite-react";
 import React from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { getStorage } from "firebase/storage";
 import { useState } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
+import { getStorage } from "firebase/storage";
+import MdEditor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
+import MarkdownIt from 'markdown-it';
+
+const mdParser = new MarkdownIt();
 
 export default function CreatePost() {
   const [file, setFile] = useState(null);
@@ -16,6 +19,11 @@ export default function CreatePost() {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
   const navigate = useNavigate();
+
+  const handleEditorChange = ({ text }) => {
+    setFormData({ ...formData, content: text });
+  };
+
   const handleUploadImage = async () => {
     try {
       if (!file) {
@@ -51,6 +59,7 @@ export default function CreatePost() {
       setImageUploadProgress(null);
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -68,12 +77,13 @@ export default function CreatePost() {
       }
       if (res.ok) {
         setPublishError(null);
-        navigate(`/posts/${data.slug}`);
+        navigate(`/post/${data.slug}`);
       }
     } catch (error) {
       setPublishError("Something went wrong");
     }
   };
+
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
@@ -135,13 +145,10 @@ export default function CreatePost() {
             className="w-full h-72 object-cover"
           />
         )}
-        <ReactQuill
-          className="h-72 mb-12"
-          theme="snow"
-          required
-          onChange={(value) => {
-            setFormData({ ...formData, content: value });
-          }}
+        <MdEditor
+          style={{ height: "500px" }}
+          renderHTML={(text) => mdParser.render(text)}
+          onChange={handleEditorChange}
         />
         <Button type="submit" gradientDuoTone="purpleToBlue">
           Publish
