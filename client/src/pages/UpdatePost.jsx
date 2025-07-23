@@ -1,15 +1,17 @@
 import { Button, FileInput, Select, TextInput, Alert } from "flowbite-react";
 import React from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import { getStorage } from "firebase/storage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import MdEditor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
+import MarkdownIt from 'markdown-it';
+
+const mdParser = new MarkdownIt();
 
 export default function UpdatePost() {
   const [file, setFile] = useState(null);
@@ -20,6 +22,7 @@ export default function UpdatePost() {
   const { postId } = useParams();
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
+
   useEffect(() => {
     try {
       const fetchPost = async () => {
@@ -40,6 +43,11 @@ export default function UpdatePost() {
       console.log(error);
     }
   }, [postId]);
+
+  const handleEditorChange = ({ text }) => {
+    setFormData({ ...formData, content: text });
+  };
+
   const handleUploadImage = async () => {
     try {
       if (!file) {
@@ -75,6 +83,7 @@ export default function UpdatePost() {
       setImageUploadProgress(null);
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -101,6 +110,7 @@ export default function UpdatePost() {
       setPublishError("Something went wrong");
     }
   };
+
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold">Update post</h1>
@@ -115,13 +125,13 @@ export default function UpdatePost() {
             onChange={(e) => {
               setFormData({ ...formData, title: e.target.value });
             }}
-            value={formData.title}
+            value={formData.title || ''}
           />
           <Select
             onChange={(e) => {
               setFormData({ ...formData, category: e.target.value });
             }}
-            value={formData.category}
+            value={formData.category || 'uncategorized'}
           >
             <option value="uncategorized">Select a category</option>
             <option value="ai">AI</option>
@@ -164,24 +174,20 @@ export default function UpdatePost() {
             className="w-full h-72 object-cover"
           />
         )}
-        <ReactQuill
-          className="h-72 mb-12"
-          theme="snow"
-          required
-          onChange={(value) => {
-            setFormData({ ...formData, content: value });
-          }}
-          value={formData.content}
+        <MdEditor
+          style={{ height: "500px" }}
+          renderHTML={(text) => mdParser.render(text)}
+          onChange={handleEditorChange}
+          value={formData.content || ''}
         />
         <Button type="submit" gradientDuoTone="purpleToBlue">
           Update post
         </Button>
         {publishError && (
           <Alert className="mt-5 items-center" color="failure">
-            {" "}
             {publishError.includes("duplicate")
               ? "Try changing the title"
-              : publishError}{" "}
+              : publishError}
           </Alert>
         )}
       </form>
