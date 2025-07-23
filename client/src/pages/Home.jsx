@@ -33,7 +33,7 @@ export default function Home() {
       {/* Fresh posts */}
       <section className="flex flex-col gap-6">
         <h2 className="text-3xl font-semibold text-gray-900 dark:text-white">
-          Fresh from the Terminal
+          Featured from the Terminal
         </h2>
         <ul className="flex flex-col gap-5">
           {[
