@@ -25,8 +25,7 @@ export default function Home() {
         <p className="text-gray-600 dark:text-gray-300 text-base lg:text-lg max-w-2xl leading-relaxed">
           Here you'll find a variety of articles and posts about everything I
           learn—technologies, software engineering, programming languages, and
-          more. This is my digital workspace where I reflect, refine, and
-          share.
+          more. This is my digital workspace where I reflect, refine, and share.
         </p>
       </section>
 
@@ -40,27 +39,33 @@ export default function Home() {
             {
               title: "Understanding Asynchronous Programming in JavaScript",
               desc: "A practical breakdown of callbacks, promises, and async/await.",
+              link: "/post/understanding-asynchronous-programming-in-javascript",
             },
             {
-              title: "Why I Switched to Rust for Systems Work",
+              title: "Why Should You Consider Rust for Systems Work",
               desc: "Exploring safety, performance, and why it's worth learning.",
+              link: "/post/why-should-you-consider-rust-for-systems-work",
             },
           ].map((post, i) => (
             <li
               key={i}
               className="bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-shadow duration-200 border dark:border-gray-700 rounded-xl p-5"
             >
-              <h3 className="font-semibold text-lg text-gray-800 dark:text-white">
-                {post.title}
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{post.desc}</p>
+              <Link to={post.link}>
+                <h3 className="font-semibold text-lg text-gray-800 dark:text-white">
+                  {post.title}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                  {post.desc}
+                </p>
+              </Link>
             </li>
           ))}
         </ul>
-        <Link to={'/search'}>
-        <button className="self-start text-blue-600 dark:text-blue-400 text-sm font-medium mt-2 hover:underline transition">
-          View All Posts →
-        </button>
+        <Link to={"/search"}>
+          <button className="self-start text-blue-600 dark:text-blue-400 text-sm font-medium mt-2 hover:underline transition">
+            View All Posts →
+          </button>
         </Link>
       </section>
 
@@ -80,10 +85,10 @@ export default function Home() {
             </div>
           </div>
         )}
-        <Link to={'/search'}>
-        <button className="self-start text-blue-600 dark:text-blue-400 text-sm font-medium mt-2 hover:underline transition">
-          View All Posts →
-        </button>
+        <Link to={"/search"}>
+          <button className="self-start text-blue-600 dark:text-blue-400 text-sm font-medium mt-2 hover:underline transition">
+            View All Posts →
+          </button>
         </Link>
       </section>
 
@@ -97,33 +102,41 @@ export default function Home() {
             {
               name: "DevNote",
               desc: "A lightweight text editor built with C++",
+              link: "",
             },
             {
               name: "RunML",
               desc: "Development of a C11 based source-source compiler.",
+              link: "/runml",
             },
           ].map((proj, i) => (
             <div
               key={i}
               className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
             >
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
-                {proj.name}
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{proj.desc}</p>
+              <Link to={proj.link}>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                  {proj.name}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                  {proj.desc}
+                </p>
+              </Link>
             </div>
           ))}
         </div>
-        <Link to={'/projects'}>
-        <button className="self-start text-blue-600 dark:text-blue-400 text-sm font-medium mt-2 hover:underline transition">
-          Explore My Work →
-        </button>
+        <Link to={"/projects"}>
+          <button className="self-start text-blue-600 dark:text-blue-400 text-sm font-medium mt-2 hover:underline transition">
+            Explore My Work →
+          </button>
         </Link>
       </section>
 
       {/* Interests */}
       <section className="flex flex-col gap-6">
-        <h2 className="text-3xl font-semibold text-gray-900 dark:text-white">What I'm Into</h2>
+        <h2 className="text-3xl font-semibold text-gray-900 dark:text-white">
+          What I'm Into
+        </h2>
         <p className="text-base text-gray-600 dark:text-gray-300 max-w-2xl leading-relaxed"></p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           {[
