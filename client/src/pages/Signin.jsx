@@ -49,14 +49,18 @@ export default function Signin() {
 
   return (
     <div className="mt-20 min-h-screen">
-      <div className="flex p-3 max-w-3xl mx-auto flex-col md:items-center gap-20">
+      <div className="flex p-3 max-w-3xl mx-auto flex-col md:items-center gap-14">
         {/*left*/}
         <div className="flex-1">
-          <Link to="/" className="font-bold dark:text-white text-4xl">
-            <span className="px-2 py-1 bg-gradient-to-r from-indigo-500">
-              Inkspire
-            </span>
-            <br></br>
+          <Link to="/" className="flex flex-col items-center">
+            <div className="px-2 py-1">
+              <img 
+                src="/techstream_icon.svg" 
+                alt="TechStream Logo" 
+                className="h-32" // Adjust height as needed
+              />
+            </div>
+            <span className="font-aldrich font-sem text-4xl mt-4">TechStream</span>
           </Link>
         </div>
         {/*right*/}
