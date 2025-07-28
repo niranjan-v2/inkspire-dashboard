@@ -69,11 +69,11 @@ const App = () => {
         <h1 className="text-3xl mt-6 mb-2">
           <span className="text-blue-600 dark:text-[#00ff9d] mr-2">$</span>
           <span className="bg-gradient-to-r from-blue-600 to-pink-500 dark:from-[#00ff9d] dark:to-[#00b8ff] bg-clip-text text-transparent">
-            My Projects
+            What I've Built
           </span>
         </h1>
         <p className="text-gray-600 dark:text-[#8892b0] italic mb-8 text-sm">
-          // Built with thought, purpose and ♥
+          // with thought, purpose and ♥
         </p>
       </header>
 

@@ -123,16 +123,24 @@ export default function Search() {
           <div className="flex items-center gap-2">
             <label className="font-semibold">Category:</label>
             <Select
-              onChange={handleChange}
-              value={sideBarData.category}
-              id="category"
-            >
-              <option value="uncategorized">Uncategorized</option>
-              <option value="ai">AI</option>
-              <option value="cpp">C++</option>
-              <option value="general">General</option>
-              <option value="js">Javascript</option>
-            </Select>
+                        onChange={(e) => {
+                          setFormData({ ...formData, category: e.target.value });
+                        }}
+                      >
+                        <option value="uncategorized">Select a category</option>
+                        <option value="ai">AI</option>
+                        <option value="cpp">C++</option>
+                        <option value="general">General</option>
+                        <option value="js">Javascript</option>
+                        <option value="webdev">Web Development</option>
+                        <option value="ds">Data Structures</option>
+                        <option value="algorithms">Algorithms</option>
+                        <option value="cyber-sec">Cyber Security</option>
+                        <option value="cloud-computing">Cloud Computing</option>
+                        <option value="swe">Software Engineering</option>
+                        <option value="java">Java</option>
+                        <option value="langages">Languages</option>
+                      </Select>
           </div>
           <Button type="submit" outline gradientDuoTone="purpleToPink">
             Apply Filters
