@@ -49,7 +49,7 @@ export default function Signin() {
 
   return (
     <div className="mt-20 min-h-screen">
-      <div className="flex p-3 max-w-3xl mx-auto flex-col md:items-center gap-14">
+      <div className="flex p-3 max-w-3xl mx-auto flex-col items-center gap-14">
         {/*left*/}
         <div className="flex-1">
           <Link to="/" className="flex flex-col items-center">
