@@ -51,20 +51,27 @@ export default function Header() {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set("searchTerm", searchTerm);
     const searchQuery = urlParams.toString();
-    navigate(`/search?${searchQuery}`)
+    navigate(`/search?${searchQuery}`);
   };
   return (
     <Navbar className="border-b-2">
       <Link
         to="/"
-        className="self-center whitespace-nowrap text-sm sm:text-xl 
-      font-semibold dark:text-white mt-2"
+        className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
       >
-        <span className="px-2 py-1 bg-gradient-to-r from-indigo-500">
-          Inkspire
-        </span>
-        <br></br>
-        <span className="px-10 text-sm font-normal">By Niranjan Vasudevan</span>
+        <div className="flex flex-col">
+          <div className="flex flex-row items-center">
+            <img
+              src="/techstream_icon.svg"
+              alt="TechStream Logo"
+              className="h-7 sm:h-9"
+            />
+            <span className="px-2 py-1 font-aldrich">TechStream</span>
+          </div>
+          <span className="text-xs sm:text-sm font-normal pl-24 -mt-1">
+            By Niranjan Vasudevan
+          </span>
+        </div>
       </Link>
       <form onSubmit={handleSubmit}>
         <TextInput
