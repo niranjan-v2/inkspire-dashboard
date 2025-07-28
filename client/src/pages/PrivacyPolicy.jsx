@@ -53,7 +53,7 @@ export default function PrivacyPolicy() {
             <p className="dark:text-gray-300">
               <strong className="font-semibold dark:text-gray-200">Company</strong> (referred to as either &quot;the
               Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in
-              this Agreement) refers to Inkspire.
+              this Agreement) refers to TechStream.
             </p>
           </li>
           <li>
@@ -105,14 +105,14 @@ export default function PrivacyPolicy() {
           </li>
           <li>
             <p className="dark:text-gray-300">
-              <strong className="font-semibold dark:text-gray-200">Website</strong> refers to Inkspire, accessible from{" "}
+              <strong className="font-semibold dark:text-gray-200">Website</strong> refers to TechStream, accessible from{" "}
               <a
-                href="www.inkspire.com"
+                href=""
                 rel="external nofollow noopener"
                 target="_blank"
                 className="text-indigo-600 dark:text-indigo-400 hover:underline"
               >
-                www.inkspire.com
+                {'<url>'}
               </a>
             </p>
           </li>
