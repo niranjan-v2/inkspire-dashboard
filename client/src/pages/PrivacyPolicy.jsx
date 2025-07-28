@@ -107,7 +107,7 @@ export default function PrivacyPolicy() {
             <p className="dark:text-gray-300">
               <strong className="font-semibold dark:text-gray-200">Website</strong> refers to TechStream, accessible from{" "}
               <a
-                href=""
+                href="https://www.niranjanv.com"
                 rel="external nofollow noopener"
                 target="_blank"
                 className="text-indigo-600 dark:text-indigo-400 hover:underline"
