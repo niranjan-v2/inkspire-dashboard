@@ -112,7 +112,7 @@ export default function PrivacyPolicy() {
                 target="_blank"
                 className="text-indigo-600 dark:text-indigo-400 hover:underline"
               >
-                {'<url>'}
+                {'www.niranjanv.com'}
               </a>
             </p>
           </li>
