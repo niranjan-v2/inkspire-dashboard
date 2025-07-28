@@ -60,7 +60,7 @@ export default function Signin() {
                 className="h-32 dark:invert"
               />
             </div>
-            <span className="font-aldrich font-sem text-4xl mt-4">TechStream</span>
+            <span className="font-aldrich text-4xl mt-4">TechStream</span>
           </Link>
         </div>
         {/*right*/}
@@ -112,7 +112,7 @@ export default function Signin() {
           </div>
           {errorMessage && (
             <Alert className="mt-5 flex justify-center items-center text-center" color="failure">
-              Network error, please try again later
+              {errorMessage}
             </Alert>
           )}
         </div>
