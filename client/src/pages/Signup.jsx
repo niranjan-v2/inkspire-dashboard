@@ -49,7 +49,7 @@ export default function Signup() {
                         <img 
                           src="/techstream_icon.svg" 
                           alt="TechStream Logo" 
-                          className="h-32" // Adjust height as needed
+                          className="h-32 dark:invert"
                         />
                       </div>
                       <span className="font-aldrich font-sem text-4xl mt-4">TechStream</span>
