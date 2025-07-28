@@ -44,16 +44,18 @@ export default function Signup() {
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-20">
         {/*left*/}
         <div className="flex-1">
-          <Link to="/" className="font-bold dark:text-white text-4xl">
-            <span className="px-2 py-1 bg-gradient-to-r from-indigo-500">
-              Inkspire
-            </span>
-            <br></br>
-          </Link>
+          <Link to="/" className="flex flex-col items-center">
+                      <div className="px-2 py-1">
+                        <img 
+                          src="/techstream_icon.svg" 
+                          alt="TechStream Logo" 
+                          className="h-32" // Adjust height as needed
+                        />
+                      </div>
+                      <span className="font-aldrich font-sem text-4xl mt-4">TechStream</span>
+                    </Link>
           <p className="text-sm mt-5">
-            This is a space where I share my thoughts, stories, and discoveries
-            on topics that inspire me—from personal reflections to explorations
-            of the world around us
+            This is TechStream — a space for me to capture the code, concepts, and curiosities that shape my journey as a developer. It’s where I share what I’m building, what I’m breaking, and what I’m learning in real-time.
           </p>
         </div>
         {/*right*/}

@@ -79,7 +79,7 @@ export default function FooterCom() {
         </div>
         <Footer.Divider/>
         <div className="w-full sm:flex sm:items-center sm:justify-between">
-            <Footer.Copyright href='#' by="Inkspire" year={new Date().getFullYear()} />
+            <Footer.Copyright href='#' by="TechStream" year={new Date().getFullYear()} />
         </div>
         <div className="flex gap-6 sm:mt-3 mt-4 sm:justify-center">
             <Footer.Icon href='https://www.facebook.com/imnitro2001/' icon={BsFacebook} />
