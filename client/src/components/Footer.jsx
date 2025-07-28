@@ -18,7 +18,7 @@ export default function FooterCom() {
                         <img
                           src="/techstream_icon.svg"
                           alt="TechStream Logo"
-                          className="h-7 sm:h-9"
+                          className="h-7 sm:h-9 dark:invert"
                         />
                         <span className="px-2 py-1 font-aldrich">TechStream</span>
                       </div>
