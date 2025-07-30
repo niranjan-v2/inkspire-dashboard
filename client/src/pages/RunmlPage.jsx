@@ -17,10 +17,12 @@ export default function RunmlPage() {
           executables.
         </p>
         <div className="mt-8 flex justify-center gap-4">
-          <Button size="lg" className="gap-2">
-            <Github size={18} />
-            View on GitHub
-          </Button>
+          <a href="https://www.github.com/niranjan-v2/mini-lang-transpiler">
+            <Button size="lg" className="gap-2">
+              <Github size={18} />
+              View on GitHub
+            </Button>
+          </a>
           <Button
             size="lg"
             variant="outline"
