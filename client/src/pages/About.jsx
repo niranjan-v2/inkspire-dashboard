@@ -14,7 +14,7 @@ export default function About() {
   }
   return (
     <div className="flex flex-col items-center py-8">
-      <Document file="/Resume.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+      <Document file="/Niranjan.pdf" onLoadSuccess={onDocumentLoadSuccess}>
         <Page
           scale={1.5}
           pageNumber={pageNumber}
